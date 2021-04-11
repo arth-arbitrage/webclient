@@ -21,8 +21,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
 
   fetchExchanges: () => { dispatch(fetchExchanges())},
-  /*fetchLenders: () => dispatch(fetchLenders())
-  fetchSwappools: () => { dispatch(fetchSwappools()) }*/
 
 });
 
