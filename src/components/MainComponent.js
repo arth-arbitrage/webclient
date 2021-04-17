@@ -4,9 +4,8 @@ import Exchanges from './ExchangesComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchExchanges } from '../redux/ActionCreators';
-
-
-
+import { Network, Arbitrage } from 'arbitrage-js';
+import { connectWallet, web3Provider, onNetworkUpdate } from '../wallet';
 
 
 const mapStateToProps = state => {
@@ -21,7 +20,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
 
   fetchExchanges: () => { dispatch(fetchExchanges())},
-  /*fetchLenders: () => dispatch(fetchLenders())
+  /*fetchLenders: () => dispatch(fetchLenders())*/
 
 });
 
@@ -30,8 +29,16 @@ const mapDispatchToProps = dispatch => ({
 
 class Main extends Component {
 
+  state = {
+    accountAddress: null,
+    test:"Test String"
+  }
+
   constructor(props) {
     super(props);
+    this.onChangeAddress()
+    onNetworkUpdate(this.onChangeAddress)
+    this.renderControls = this.renderControls.bind(this)
   }
   componentDidMount() {
     this.props.fetchExchanges();
@@ -40,19 +47,47 @@ class Main extends Component {
 
   }
 
-   
-  
+  onChangeAddress = () => {
+    this.arbitrage = new Arbitrage(web3Provider, {
+      networkName: Network.Main
+    })
+    this.web3 = this.arbitrage.web3
+    this.web3.eth.getAccounts((err, res) => {
+      this.setState({
+        accountAddress: res[0]
+      })
+    })
+  }
+
+  async enableWallet() {
+    const { accountAddress } = this.props
+    if (!accountAddress) {
+      await connectWallet()
+    }
+  }
+  renderControls(props)  {  
+    return (
+    <div className="mb-3 ml-4">
+      <div className="btn-group" role="group">
+        <button type="button" className={"btn btn-outline-secondary " + "active" } data-toggle="button" onClick={() => this.enableWallet()}>
+          Refresh Wallet
+        </button>
+        
+      </div>
+      <div>{props.account}</div>
+    </div>
+    )
+  }
+
   render() {
 
     const HomePage = () => {
       
       return(
-         
-        <Home 
-           
-            swappools={this.props.swappools}
-        />
-    
+        <div>
+          {this.renderControls({account: this.state.accountAddress})}
+          <Home swappools={this.props.swappools} ></Home>
+        </div>
       );
     }
     const ExchangePage = () => {
@@ -79,7 +114,6 @@ class Main extends Component {
 
           {/*<Redirect to="/exchanges" />*/}
         </Switch>
-
 
       </div>
     );

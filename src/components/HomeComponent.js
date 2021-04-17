@@ -2,8 +2,6 @@ import React from 'react';
 import Swappool from './SwappoolComponent';
 
 
-
-
 function Home(props) {
     if (props === undefined) return (<div></div>);
     console.log(props.swappools.swappools)
