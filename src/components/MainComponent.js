@@ -4,6 +4,9 @@ import Exchanges from './ExchangesComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchExchanges } from '../redux/ActionCreators';
+import { fetchLenders } from '../redux/ActionCreators';
+import Lenders from './LendersComponent';
+import Operation from './OperationComponent';
 
 
 
@@ -13,7 +16,7 @@ const mapStateToProps = state => {
   return {
      //exchanges: state.exchanges,
  
-    /* lenders: state.lenders*/
+     lenderpools: state.lenderpools,
     swappools: state.swappools
 
   }
@@ -21,6 +24,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
 
   fetchExchanges: () => { dispatch(fetchExchanges())},
+  fetchLenders: () => { dispatch(fetchLenders())},
 
 });
 
@@ -34,8 +38,8 @@ class Main extends Component {
   }
   componentDidMount() {
     this.props.fetchExchanges();
-    /*this.props.fetchLenders();
-    this.props.fetchSwappools();*/
+    this.props.fetchLenders();
+    /*this.props.fetchSwappools();*/
 
   }
 
@@ -46,25 +50,19 @@ class Main extends Component {
     const HomePage = () => {
       
       return(
-         
+       <div class ="container"  >
         <Home 
            
             swappools={this.props.swappools}
         />
-    
-      );
-    }
-    const ExchangePage = () => {
+        <Lenders
+          lenderpools = {this.props.lenderpools}
+      />
       
-      return(
-
-        <Exchanges 
-            exchanges={this.props.exchanges}
-            swappools={this.props.swappools}
-        />
-    
+      </div>
       );
     }
+   
 
 
 
@@ -76,7 +74,6 @@ class Main extends Component {
           <Route path='/' component={HomePage} />
           
 
-          {/*<Redirect to="/exchanges" />*/}
         </Switch>
 
 
