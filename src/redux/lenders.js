@@ -6,10 +6,8 @@ export const Lenders = (state = { isLoading: true,
     switch (action.type) {
         case ActionTypes.ADD_LENDERS:
             return {...state, isLoading: false, errMess: null, lenders: action.payload};
-
         case ActionTypes.LENDERS_LOADING:
-            return {...state, isLoading: true, errMess: null, lenders: []}
-
+                return {...state, isLoading: true, errMess: null, lenders: []}
         case ActionTypes.LENDERS_FAILED:
             return {...state, isLoading: false, errMess: action.payload};
 

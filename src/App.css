@@ -30,4 +30,28 @@
   background-color: #4CAF50;
   color: white;
 }
+#lenders {
+  text-align: center;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+  width: 100%;
+}
+
+#lenders td, #swappools th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#lenders tr:nth-child(even){background-color: #f2f2f2;}
+
+#lenders tr:hover {background-color: #ddd;}
+
+#lenders th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+}
 
