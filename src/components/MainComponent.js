@@ -41,21 +41,26 @@ class Main extends Component {
     this.renderControls = this.renderControls.bind(this)
   }
   componentDidMount() {
-    this.props.fetchExchanges();
+    /*this.props.fetchExchanges();*/
     /*this.props.fetchLenders();
     this.props.fetchSwappools();*/
 
   }
 
   onChangeAddress = () => {
+    console.log(web3Provider);
     this.arbitrage = new Arbitrage(web3Provider, {
       networkName: Network.Main
     })
     this.web3 = this.arbitrage.web3
     this.web3.eth.getAccounts((err, res) => {
-      this.setState({
-        accountAddress: res[0]
-      })
+      if(err !== null){
+        console.log(err)
+      } else {
+        this.setState({
+          accountAddress: res[0]
+        })
+      }
     })
   }
 
@@ -86,7 +91,7 @@ class Main extends Component {
       return(
         <div>
           {this.renderControls({account: this.state.accountAddress})}
-          <Home swappools={this.props.swappools} ></Home>
+          {<Home swappools={this.props.swappools} ></Home>}
         </div>
       );
     }
