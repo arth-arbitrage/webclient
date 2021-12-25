@@ -184,5 +184,19 @@ export const addLenders = (lenders) => ({
   payload: lenders
 });
 
+export const initOperations = () => ({
+  type: ActionTypes.OPERATION_INIT,
+  payload: []
+});
+
+export const addNewOperation = (operation) => ({
+  type: ActionTypes.OPERATION_ADD,
+  payload: operation,
+});
+
+export const clearOperations = (operation) => ({
+  type: ActionTypes.OPERATION_CLEAR,
+  payload: "",
+});
 
 

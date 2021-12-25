@@ -1,26 +1,40 @@
 import React from 'react';
 import { Loading } from './LoadingComponent';
 
+import { connect } from 'react-redux';
+import { addNewOperation } from '../redux/ActionCreators';
+import "./Component.css";
+
+const SwappoolRow = (props) => {
+
+    const { id, name, token0, token1, reserve0, reserve1, price0, price1, fees } = props.swappool;
+
+    const handleClickOpButton = async () => {
+        props.addNewOperation({ id, name, token0, token1, quantity0: "", quantity1:"", price0, price1, fees });
+    }
+
+    return (
+        <tr key={id} onClick={() => handleClickOpButton()}>
+        <td>{id}</td>
+        <td className="td-name">{name}</td>
+        <td>{token0}</td>
+        <td>{token1}</td>
+        <td>{reserve0}</td>
+        <td>{reserve1}</td>
+        <td>{price0}</td>
+        <td>{price1}</td>
+        <td>{fees}</td>
+    </tr>
+    );    
+}
 
 
 const Swappool = (props) => {
 
         
     const swappool = props.swappools.map((swappool) => {
-        const { id, name, token0, token1, reserve0, reserve1, price0, price1, fees } = swappool
-        return (
-            <tr key={id}>
-            <td>{id}</td>
-            <td>{name}</td>
-            <td>{token0}</td>
-            <td>{token1}</td>
-            <td>{reserve0}</td>
-            <td>{reserve1}</td>
-            <td>{price0}</td>
-            <td>{price1}</td>
-            <td>{fees}</td>
-        </tr>
-        );
+        const { id, name, token0, token1, reserve0, reserve1, price0, price1, fees } = swappool;
+        return (<SwappoolRow {...props} swappool={swappool}> </SwappoolRow>);
     });
     if (props.swappools.isLoading) {
         return (
@@ -45,7 +59,6 @@ const Swappool = (props) => {
     else
 
         return (
-            <div className="container">
                 <div>
                     <h1 id='title'>Swappools</h1>
                     
@@ -58,10 +71,8 @@ const Swappool = (props) => {
                         </tbody>
                     </table>
                 </div>
-            </div>
-
         );
 }
 
 
-export default Swappool;
+export default connect(null, {addNewOperation})(Swappool);

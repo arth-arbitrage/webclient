@@ -1,0 +1,35 @@
+@media ( max-width: 1200px) {
+    .container-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      pointer-events: none;
+      flex-shrink: 1;
+      flex-grow: 1;
+      align-items: center;
+    }
+  
+    .container-main > * {
+      flex-shrink: 1;
+      pointer-events: auto;
+    }
+  
+  }
+
+  @media ( min-width: 1280px) {
+    .container-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      pointer-events: none;
+      flex-shrink: 1;
+      flex-grow: 1;
+      align-items: center;
+    }
+  
+    .container-main > * {
+      flex-shrink: 1;
+      pointer-events: auto;
+    }
+  
+  }

@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    width: calc(100% - 2em);
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: left;
+    flex-shrink: 1;
+    flex-grow: 1;
+    align-items: left;
+    margin: 1em;
+  }
+
+.td-name
+{
+ max-width: 100px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}

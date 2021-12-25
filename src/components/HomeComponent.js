@@ -9,7 +9,6 @@ function Home(props) {
     console.log(props.swappools.swappools)
     return (
         props.swappools.swappools.map((swappools) => {
-
             return (
                 <div className="container">
                     <Swappool swappools={swappools} />

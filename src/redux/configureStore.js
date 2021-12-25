@@ -2,6 +2,8 @@ import {createStore, combineReducers, applyMiddleware } from 'redux';
 import { Exchanges } from './exchanges';
 import { Lenderpools } from './lenderpools';
 import { Swappools } from './swappools';
+import { Operations } from './operations';
+
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
@@ -10,8 +12,8 @@ export const ConfigureStore = () => {
         combineReducers({
            // exchanges: Exchanges,
             lenderpools: Lenderpools,
-            swappools: Swappools
-                        
+            swappools: Swappools,
+            operations: Operations,            
         }),
         applyMiddleware(thunk, logger)
     );

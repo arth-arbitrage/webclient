@@ -5,9 +5,10 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchExchanges } from '../redux/ActionCreators';
 import { fetchLenders } from '../redux/ActionCreators';
+import { initOperations } from '../redux/ActionCreators';
 import Lenders from './LendersComponent';
-import Operation from './OperationComponent';
-
+import Operations from './OperationComponent';
+import './MainComponent.css';
 
 
 
@@ -16,16 +17,16 @@ const mapStateToProps = state => {
   return {
      //exchanges: state.exchanges,
  
-     lenderpools: state.lenderpools,
-    swappools: state.swappools
-
+    lenderpools: state.lenderpools,
+    swappools: state.swappools,
+    operations: state.operations,
   }
 }
 const mapDispatchToProps = dispatch => ({
 
   fetchExchanges: () => { dispatch(fetchExchanges())},
   fetchLenders: () => { dispatch(fetchLenders())},
-
+  initOperations: () => { dispatch(initOperations())},
 });
 
 
@@ -39,6 +40,7 @@ class Main extends Component {
   componentDidMount() {
     this.props.fetchExchanges();
     this.props.fetchLenders();
+    this.props.initOperations();
     /*this.props.fetchSwappools();*/
 
   }
@@ -51,14 +53,16 @@ class Main extends Component {
       
       return(
        <div class ="container"  >
-        <Home 
-           
-            swappools={this.props.swappools}
-        />
-        <Lenders
-          lenderpools = {this.props.lenderpools}
-      />
-      
+          <Operations 
+            operations={this.props.operations}
+          />
+
+          <Home   
+              swappools={this.props.swappools}
+          />
+          <Lenders
+            lenderpools = {this.props.lenderpools}
+          />
       </div>
       );
     }
