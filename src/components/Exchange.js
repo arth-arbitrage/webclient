@@ -1,24 +1,19 @@
 import React from 'react';
-import Swappool from './SwappoolComponent';
+import Swappools from './Swappools';
 
-
-
-
-function Home(props) {
+function Exchange(props) {
     if (props === undefined) return (<div></div>);
     console.log(props.swappools.swappools)
     return (
         props.swappools.swappools.map((swappools) => {
             return (
                 <div className="container">
-                    <Swappool swappools={swappools} />
+                    <Swappools swappools={swappools} />
                 </div>
             );
         })
-            
-                
     );
 }
 
-export default Home;
+export default Exchange;
 

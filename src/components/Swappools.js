@@ -29,7 +29,7 @@ const SwappoolRow = (props) => {
 }
 
 
-const Swappool = (props) => {
+const Swappools = (props) => {
 
         
     const swappool = props.swappools.map((swappool) => {
@@ -75,4 +75,4 @@ const Swappool = (props) => {
 }
 
 
-export default connect(null, {addNewOperation})(Swappool);
+export default connect(null, {addNewOperation})(Swappools);

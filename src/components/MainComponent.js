@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Home from './HomeComponent';
-import Exchanges from './ExchangesComponent';
+import Exchange from './Exchange';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchExchanges } from '../redux/ActionCreators';
@@ -57,7 +56,7 @@ class Main extends Component {
             operations={this.props.operations}
           />
 
-          <Home   
+          <Exchange   
               swappools={this.props.swappools}
           />
           <Lenders

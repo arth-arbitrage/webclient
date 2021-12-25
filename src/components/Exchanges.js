@@ -1,22 +1,15 @@
 import React from 'react';
-import Swappool from './SwappoolComponent';
+import Swappool from './Swappools';
 
 const Exchanges = (props) => {
-
     const Exchange = props.exchanges.exchanges.map((exchange) => {
-        
-        
         return (
             <div className="container">
-                
                 <Swappool exchange></Swappool>
-                
                 </div>
         );
     });
                 
-     
-       
      if (props.exchanges.errMess) {
         return (
             <div className="container">
@@ -30,13 +23,10 @@ const Exchanges = (props) => {
     }
     else
     return (
-        <div className="container">
-                    
+        <div className="container">                    
         {Exchange}
         </div>
         );
-    
 }
-
 
 export default Exchanges;
