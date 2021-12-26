@@ -2,15 +2,15 @@ import * as ActionTypes from './ActionTypes';
 
 export const Exchanges = (state = { isLoading: true,
     errMess: null,
-    exchanges:[]}, action) => {
+    swappools:[]}, action) => {
     switch (action.type) {
-        case ActionTypes.ADD_EXCHANGES:
-            return {...state, isLoading: false, errMess: null, exchanges: action.payload};
+        case ActionTypes.ADD_SWAPPOOLS:
+            return {isLoading: false, errMess: null, swappools: [...state.swappools, action.payload]};
 
-        case ActionTypes.EXCHANGES_LOADING:
-            return {...state, isLoading: true, errMess: null, exchanges: []}
+        case ActionTypes.SWAPPOOLS_LOADING:
+            return {...state, isLoading: true, errMess: null, swappools: []}
 
-        case ActionTypes.EXCHANGES_FAILED:
+        case ActionTypes.SWAPPOOLS_FAILED:
             return {...state, isLoading: false, errMess: action.payload};
 
         default:

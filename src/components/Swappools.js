@@ -30,8 +30,6 @@ const SwappoolRow = (props) => {
 
 
 const Swappools = (props) => {
-
-        
     const swappool = props.swappools.map((swappool) => {
         const { id, name, token0, token1, reserve0, reserve1, price0, price1, fees } = swappool;
         return (<SwappoolRow {...props} swappool={swappool}> </SwappoolRow>);
@@ -60,7 +58,7 @@ const Swappools = (props) => {
 
         return (
                 <div>
-                    <h1 id='title'>Swappools</h1>
+                    <h1 id='title'>Swappools: {props.exchgName}</h1>
                     
                     <table id='swappools'>
                         <tbody>

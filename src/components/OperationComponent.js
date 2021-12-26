@@ -8,6 +8,7 @@ import "./Component.css";
 
 const Operations = (props) => {
     let operations = props.operations.operations;  
+    const [amount, setAmount] = useState("");
     const [id, setId] = useState("1");
     const [name, setName] = useState("USDT-wEth");
     const [token0, setToken0] = useState("USDT");
@@ -22,6 +23,10 @@ const Operations = (props) => {
 
     const handleClickOpButton = async () => {
         props.addNewOperation({ id, name, token0, token1, quantity0, quantity1, price0, price1, fees });
+    }
+
+    const handleChangeAmount = async () => {
+        
     }
 
     console.log(`props ${props}`);
@@ -68,13 +73,24 @@ const Operations = (props) => {
                 <div>
                     <h1 id='title'>Multi Swap Operations</h1>
                     <OpPanel> 
-                    <OpButton onClick = {props.clearOperations}>Clear</OpButton>
-                    <OpButton >Execute</OpButton>     
+                        <Select>
+                            <option value="" hidden>
+                            Funding Source
+                            </option>
+                            <option value="1">Flash Loan</option>
+                            <option value="2">Own Funds</option>
+                        </Select>     
+                        <AmountLabel>Amount</AmountLabel>
+                        <Input value={amount} name="amount" placeholder="Amount" onChange={handleChangeAmount}></Input>                   
+                        <OpButton onClick = {props.clearOperations}>Clear</OpButton>
+                        <OpButton >Estimate</OpButton>
+                        <OpButton >Execute</OpButton>
+                
                     </OpPanel>
                     <table id='swappools'>
                         <tbody>
-                            <th>ID</th><th>NAME</th><th>TOKEN0</th><th>TOKEN1</th><th>Qty0</th><th>Qty1</th>
-                            <th>PRICE0</th><th>PRICE1</th><th>FEES</th>
+                            <th>ID</th><th>Name</th><th>Token0</th><th>Token1</th><th>Token0 Qty</th><th>Token1 Qty</th>
+                            <th>Token1 Price</th><th>Token1 Price</th><th>Fees</th>
                             {/*<tr>{header}</tr>*/}
                             {opdispList}
                         </tbody>
@@ -102,6 +118,7 @@ const theme = {
   color: white;
   padding: 5px 15px;
   border-radius: 5px;
+  font-size: 16px;
   outline: 0;
   width: 120px;
   //text-transform: uppercase;
@@ -138,4 +155,51 @@ text-overflow: ellipsis;
 }
 `;
 
+const Select = styled.select`
+  width: 200px;
+  height: 35px;
+  background-color: #e91e63;
+  color: white;
+  padding-left: 5px;
+  font-size: 16px;
+  border: none;
+  margin: 10px;
+
+  option {
+    color: black;
+    background: white;
+    display: flex;
+    white-space: pre;
+    min-height: 20px;
+    padding: 0px 2px 1px;
+  }
+`;
+
+const AmountLabel = styled.div`
+  position: relative;
+  margin: 0.6em;
+  padding: 0.5em;
+  align-items: center;
+  color: palevioletred;
+  font-size: 16px;
+  box-sizing: border-box;
+  flex-grow: 0;
+  flex-shrink: 0;  
+  flex-basis:80px
+`;
+
+const Input = styled.input`
+position: relative; 
+font-size: 16px;
+padding: 0.5em;
+margin: 0.6em;
+color: ${props => props.inputColor || "palevioletred"};
+background: #282C34;
+border: none;
+border-radius: 3px;
+box-sizing: border-box;
+flex-grow: 0;
+flex-shrink: 0;
+max-width: 160px;
+`;
 export default connect(null, {clearOperations})(Operations);

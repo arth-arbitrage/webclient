@@ -3,12 +3,12 @@ import Swappools from './Swappools';
 
 function Exchange(props) {
     if (props === undefined) return (<div></div>);
-    console.log(props.swappools.swappools)
+    console.log(props.exchanges.swappools)
     return (
-        props.swappools.swappools.map((swappools) => {
+        props.exchanges.swappools.map((swappools) => {
             return (
                 <div className="container">
-                    <Swappools swappools={swappools} />
+                    <Swappools exchgName={swappools.name} exchgId={swappools.id} swappools={swappools.pools} />
                 </div>
             );
         })

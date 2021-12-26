@@ -1,6 +1,7 @@
 @media ( max-width: 1200px) {
     .container-main {
       display: flex;
+      max-width: 1024px;
       flex-direction: column;
       justify-content: center;
       pointer-events: none;
@@ -19,6 +20,7 @@
   @media ( min-width: 1280px) {
     .container-main {
       display: flex;
+      max-width: 1024px;
       flex-direction: column;
       justify-content: center;
       pointer-events: none;

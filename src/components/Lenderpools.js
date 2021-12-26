@@ -56,7 +56,7 @@ const Lenderpool = (props) => {
     else
         return (
             <div>
-                <h1 id='title'>Lenderpools</h1>
+                <h1 id='title'>Lenderpools: {props.lenderName} </h1>
                 
                 <table id='swappools'>
                     <tbody>

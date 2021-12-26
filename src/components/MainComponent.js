@@ -5,19 +5,17 @@ import { connect } from 'react-redux';
 import { fetchExchanges } from '../redux/ActionCreators';
 import { fetchLenders } from '../redux/ActionCreators';
 import { initOperations } from '../redux/ActionCreators';
-import Lenders from './LendersComponent';
+import Lenders from './Lenders';
 import Operations from './OperationComponent';
 import './MainComponent.css';
-
-
 
 
 const mapStateToProps = state => {
   return {
      //exchanges: state.exchanges,
  
-    lenderpools: state.lenderpools,
-    swappools: state.swappools,
+    lenders: state.lenders,
+    exchanges: state.exchanges,
     operations: state.operations,
   }
 }
@@ -40,46 +38,24 @@ class Main extends Component {
     this.props.fetchExchanges();
     this.props.fetchLenders();
     this.props.initOperations();
-    /*this.props.fetchSwappools();*/
-
   }
-
-   
   
   render() {
-
     const HomePage = () => {
-      
       return(
-       <div class ="container"  >
-          <Operations 
-            operations={this.props.operations}
-          />
-
-          <Exchange   
-              swappools={this.props.swappools}
-          />
-          <Lenders
-            lenderpools = {this.props.lenderpools}
-          />
+       <div className="container-main"  >
+          <Operations operations={this.props.operations} />
+          <Exchange   exchanges={this.props.exchanges} />
+          <Lenders lenders = {this.props.lenders} />
       </div>
       );
     }
    
-
-
-
     return (
       <div>
-
         <Switch>
-           
           <Route path='/' component={HomePage} />
-          
-
         </Switch>
-
-
       </div>
     );
   }
